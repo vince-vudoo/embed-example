@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Vudoo embed example with JS event callbacks</title>
+  <meta name="description" content="Vudoo embed example with JS event callbacks">
+  <meta name="author" content="vudoo">
+
+  <style>
+    .vudoo--embed {
+    	position: relative; padding-bottom: ""; height:360px; overflow: hidden; max-width: 100%; width:640px; margin: auto;
+    }
+    @media(max-width: 768px) {
+    	.vudoo--embed {
+    		padding-bottom: 100%; height: 0;
+    	}
+    }
+    .vudoo--embed iframe, .vudoo--embed .embed-container embed {
+    	position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    }
+  </style>
+
+</head>
+  <body>
+
+    <!--
+      The embed ID "22090762951" is a unique ID used for every embed
+     -->
+    <iframe  id="vudoo-iframe-22090762951" width="1280" height="720" src="https://vudoo.io/embed/15221310278" frameborder="0"  allow="autoplay" allowfullscreen ></iframe>
+    <script src="https://vudoo.io/sites/all/themes/basic/js/iframe/vudoo__vxo_frame.js"></script>
+
+    <script>
+      /**
+       * The below code will handle mobile fullscreen toggle on/ off
+       */
+      document.getElementById("vudoo-iframe-22090762951").onload = function() {
+        var vudooFrame = new vudooIframeEmbed({
+          frame: this,
+          embedid: "22090762951"
+        });
+      };
+      var toggle_frame_screen = function(e, t) {
+        var l = document.getElementById("vudoo-iframe-22090762951");
+        e 
+        ? (l.style.position = "fixed", l.style.bottom = "0", l.style.left = "0", l.style.width = "100vw", l.style.height = "100%", l.style.zIndex = "500000") 
+        : (l.style.position = "", l.style.top = "", l.style.bottom = "", l.style.left = "", l.style.width = "", l.style.height = "", l.style.maxWidth = "100%", l.style.zIndex = "");
+      };
+    </script>
+    
+    <script type="text/javascript">
+      /**
+       * This is where you can handle your own actions
+       * based on Vudoo player events
+       */
+      var vudooEvents = function(event) {
+        if( event.event !== 'TIME_UPDATE' ) {
+          console.log('VUDOO_EVENT: ', event);
+        }
+      };
+    </script>
+
+  </body>
+</html>
